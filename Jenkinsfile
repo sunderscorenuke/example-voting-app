@@ -253,8 +253,7 @@ pipeline {
               echo $GIT_REPO_EMAIL
               echo $GIT_COMMIT
               ls -lth
-              yq eval '.image.repository = env(IMAGE_REPO)' -i vote-ui-deployment.yaml
-              yq eval '.image.tag = env(GIT_COMMIT)' -i vote-ui-deployment.yaml
+              yq eval '.spec.template.spec.image = "docker.io/okapetanios/vote:" + env(GIT_COMMIT)' -i vote-ui-deployment.yaml
               cat vote-ui-deployment.yaml
               pwd
               git add vote-ui-deployment.yaml
