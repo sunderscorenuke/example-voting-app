@@ -253,11 +253,11 @@ pipeline {
               echo $GIT_REPO_EMAIL
               echo $GIT_COMMIT
               ls -lth
-              yq eval '.image.repository = env(IMAGE_REPO)' -i values.yaml
-              yq eval '.image.tag = env(GIT_COMMIT)' -i values.yaml
-              cat values.yaml
+              yq eval '.image.repository = env(IMAGE_REPO)' -i vote-ui-deployment.yaml
+              yq eval '.image.tag = env(GIT_COMMIT)' -i vote-ui-deployment.yaml
+              cat vote-ui-deployment.yaml
               pwd
-              git add values.yaml
+              git add vote-ui-deployment.yaml
               git commit -m 'Triggered Build'
               git push https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/$GIT_CREDS_USR/vote-deploy.git
             '''
