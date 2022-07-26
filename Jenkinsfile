@@ -226,11 +226,10 @@ pipeline {
         }
       }
       when {
-        changeset '**/vote/**'
         branch 'master'
       }
       environment {
-        GIT_CREDS = credentials('github')
+        GIT_CREDS = credentials('eeganlf-github')
         HELM_GIT_REPO_URL = "https://github.com/eeganlf/vote-deploy.git"
         GIT_REPO_EMAIL = 'eegan@linuxfoundaton.org'
         GIT_REPO_BRANCH = "master"
@@ -238,7 +237,7 @@ pipeline {
        // Update above variables with your user details
       }
       steps {
-        echo 'Packaging vote app with docker'
+        echo 'Updating GitOps Repository'
         script {
          sh "git clone https://${env.HELM_GIT_REPO_URL}"
             sh "git config --global user.email ${env.GIT_REPO_EMAIL}"
