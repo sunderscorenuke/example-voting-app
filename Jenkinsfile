@@ -218,7 +218,7 @@ pipeline {
       stage('Argo CD') {
       agent {
         docker{
-          image 'ellerbrock/alpine-bash-git:latest'
+          image 'bitnami/git:latest'
         }
       }
      
@@ -233,8 +233,6 @@ pipeline {
       steps {
         echo 'Updating GitOps Repository'
          //script {
-        sh "apt -y update"
-        sh "apt -y install git"
          sh "git clone https://${env.HELM_GIT_REPO_URL}"
             sh "sudo git config --global user.email ${env.GIT_REPO_EMAIL}"
              // install yq
