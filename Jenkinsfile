@@ -233,6 +233,7 @@ pipeline {
       steps {
         echo 'Updating GitOps Repository'
          //script {
+         sh "rm -rf .git"
          sh "git clone https://${env.HELM_GIT_REPO_URL}"
             sh "sudo git config --global user.email ${env.GIT_REPO_EMAIL}"
              // install yq
