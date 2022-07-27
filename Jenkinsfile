@@ -218,7 +218,7 @@ pipeline {
       stage('Argo CD') {
       agent {
         docker{
-          image 'ubuntu/ubuntu:jammy-20220531'
+          image 'ubuntu:jammy-20220531'
         }
       }
      
