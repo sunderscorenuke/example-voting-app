@@ -224,7 +224,7 @@ pipeline {
      
       environment {
         GIT_CREDS = credentials('eeganlf-github')
-        HELM_GIT_REPO_URL = "https://github.com/eeganlf/vote-deploy.git"
+        HELM_GIT_REPO_URL = "github.com/eeganlf/vote-deploy.git"
         GIT_REPO_EMAIL = 'eegan@linuxfoundaton.org'
         GIT_REPO_BRANCH = "master"
           
