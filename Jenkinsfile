@@ -200,16 +200,12 @@ pipeline {
 
     stage('vote-docker-package') {
       agent any
-    /*  when {
-        changeset '**/vote/**'
-        branch 'master'
-      } */
       steps {
         echo 'Packaging vote app with docker'
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
             // ./vote is the path to the Dockerfile that Jenkins will find from the Github repo
-            def voteImage = docker.build("okapetanios/vote:v${env.BUILD_ID}", "./vote")
+            def voteImage = docker.build("okapetanios/vote:v${env.GIT_COMMIT}", "./vote")
             voteImage.push()
             voteImage.push("${env.BRANCH_NAME}")
             voteImage.push("latest")
