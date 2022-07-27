@@ -221,9 +221,7 @@ pipeline {
           image 'argoproj/argocd:v2.4.5'
         }
       }
-      /*  when {
-        branch 'master'
-      } */
+     
       environment {
         GIT_CREDS = credentials('eeganlf-github')
         HELM_GIT_REPO_URL = "https://github.com/eeganlf/vote-deploy.git"
