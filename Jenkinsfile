@@ -218,7 +218,7 @@ pipeline {
       stage('Argo CD') {
       agent {
         docker{
-          image 'bash:latest'
+          image 'ubuntu:18.04'
         }
       }
      
