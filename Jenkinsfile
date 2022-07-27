@@ -200,10 +200,10 @@ pipeline {
 
     stage('vote-docker-package') {
       agent any
-      when {
+    /*  when {
         changeset '**/vote/**'
         branch 'master'
-      }
+      } */
       steps {
         echo 'Packaging vote app with docker'
         script {
@@ -225,9 +225,9 @@ pipeline {
           image 'argoproj/argocd:v2.4.5'
         }
       }
-      when {
+      /*  when {
         branch 'master'
-      }
+      } */
       environment {
         GIT_CREDS = credentials('eeganlf-github')
         HELM_GIT_REPO_URL = "https://github.com/eeganlf/vote-deploy.git"
@@ -238,7 +238,7 @@ pipeline {
       }
       steps {
         echo 'Updating GitOps Repository'
-        script {
+         //script {
          sh "git clone https://${env.HELM_GIT_REPO_URL}"
             sh "git config --global user.email ${env.GIT_REPO_EMAIL}"
              // install yq
@@ -260,8 +260,8 @@ pipeline {
               git commit -m 'Triggered Build'
               git push https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/$GIT_CREDS_USR/vote-deploy.git
             '''
-          }
-        }
+           }
+        //}
 
       }
     }
