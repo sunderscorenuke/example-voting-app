@@ -218,7 +218,7 @@ pipeline {
       stage('Argo CD') {
       agent {
         docker{
-          image 'bitnami/git:latest'
+          image 'okapetanios/ubuntuforcd:latest'
         }
       }
      
