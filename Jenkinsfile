@@ -216,11 +216,7 @@ pipeline {
     }
 
       stage('Argo CD') {
-      agent {
-        docker{
-          image 'okapetanios/ubuntuforcd:latest'
-        }
-      }
+      agent any
      
       environment {
         GIT_CREDS = credentials('eeganlf-github')
@@ -231,6 +227,7 @@ pipeline {
        // Update above variables with your user details
       }
       steps {
+        container('tools') {
         echo 'Updating GitOps Repository'
          //script {
          sh "rm -rf vote-deploy"
@@ -256,7 +253,7 @@ pipeline {
               git push https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/$GIT_CREDS_USR/vote-deploy.git
             '''
            }
-        //}
+        }
 
       }
     }
