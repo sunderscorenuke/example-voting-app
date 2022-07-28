@@ -215,52 +215,7 @@ pipeline {
       }
     }
 
-      stage('Argo CD') {
-      agent {
-        docker{
-          image 'okapetanios/ubuntuforcd:latest'
-        }
-      }
      
-      environment {
-        GIT_CREDS = credentials('eeganlf-github')
-        HELM_GIT_REPO_URL = "github.com/eeganlf/vote-deploy.git"
-        GIT_REPO_EMAIL = 'eegan@linuxfoundaton.org'
-        GIT_REPO_BRANCH = "master"
-          
-       // Update above variables with your user details
-      }
-      steps {
-        echo 'Updating GitOps Repository'
-         //script {
-         sh "rm -rf vote-deploy"
-         sh "git clone https://${env.HELM_GIT_REPO_URL}"
-            sh "sudo git config --global user.email ${env.GIT_REPO_EMAIL}"
-             // install yq
-            sh "wget https://github.com/mikefarah/yq/releases/download/v4.9.6/yq_linux_amd64.tar.gz"
-            sh "tar xvf yq_linux_amd64.tar.gz"
-            sh "mv yq_linux_amd64 /usr/bin/yq"
-            sh "git checkout -b master"
-          dir("vote-deploy") {
-              sh "git checkout ${env.GIT_REPO_BRANCH}"
-            //install done
-            sh '''#!/bin/bash
-              echo $GIT_REPO_EMAIL
-              echo $GIT_COMMIT
-              ls -lth
-              yq eval '.spec.template.spec.image = "docker.io/okapetanios/vote:" + env(GIT_COMMIT)' -i vote-ui-deployment.yaml
-              cat vote-ui-deployment.yaml
-              pwd
-              git add vote-ui-deployment.yaml
-              git commit -m 'Triggered Build'
-              git push https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/$GIT_CREDS_USR/vote-deploy.git
-            '''
-           }
-        //}
-
-      }
-    }
-
     stage('Sonarqube') {
       agent any
       when {
