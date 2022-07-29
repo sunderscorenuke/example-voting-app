@@ -263,9 +263,12 @@ pipeline {
     }
     
     stage('Trigger deployment') {
-                echo "triggering deployment"
-                // passing variables to job deployment run by github.com/eeganlf/vote-deploy/blob/master/Jenkinsfile
-                build job: 'deployment', parameters: [string(name: 'DOCKERTAG', value: env.GIT_COMMIT)]
+      steps{
+        echo "triggering deployment"
+        // passing variables to job deployment run by github.com/eeganlf/vote-deploy/blob/master/Jenkinsfile
+        build job: 'deployment', parameters: [string(name: 'DOCKERTAG', value: env.GIT_COMMIT)]
+        }
+        
         }
   
   
