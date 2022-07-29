@@ -263,10 +263,14 @@ pipeline {
     }
     
     stage('Trigger deployment') {
+      environment{
+        GIT_COMMIT = env.GIT_COMMIT
+      }
       steps{
+        echo ${GIT_COMMIT}
         echo "triggering deployment"
         // passing variables to job deployment run by github.com/eeganlf/vote-deploy/blob/master/Jenkinsfile
-        build job: 'deployment', parameters: [string(name: 'DOCKERTAG', value: env.GIT_COMMIT)]
+        build job: 'deployment', parameters: [string(name: 'DOCKERTAG', value: GIT_COMMIT)]
         }
         
         }
