@@ -263,8 +263,9 @@ pipeline {
     }
     
     stage('Trigger deployment') {
+      agent any
       environment{
-        def GIT_COMMIT = env.GIT_COMMIT
+        def GIT_COMMIT = "${env.GIT_COMMIT}"
       }
       steps{
         echo "${GIT_COMMIT}"
