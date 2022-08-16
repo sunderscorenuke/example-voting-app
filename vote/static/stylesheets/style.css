@@ -6,7 +6,7 @@
 html,body{
   margin: 0;
   padding: 0;
-  background-color: #ff0000;
+  background-color: #F7F8F9;
   height: 100vh;
   font-family: 'Open Sans';
 }
@@ -28,11 +28,11 @@ button i{
 }
 
 button.a{
-  background-color: ##ff0000;
+  background-color: #ab2b2b;
 }
 
 button.b{
-  background-color: ##ff0000;
+  background-color: #d43939;
 }
 
 #tip{
