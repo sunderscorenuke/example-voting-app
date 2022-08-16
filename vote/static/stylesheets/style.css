@@ -27,11 +27,11 @@ button i{
   margin-top: 3px;
 }
 
-button.a{
+#a{
   background-color: #C70039;
 }
 
-button.b{
+#b{
   background-color: #FF5733;
 }
 
