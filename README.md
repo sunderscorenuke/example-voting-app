@@ -1,7 +1,8 @@
 Example Voting App
 =========
 
-[![Build Status]( https://b650-222-164-150-89.ap.ngrok.io/buildStatus/icon?job=instavote%2Fworker-build)]( https://b650-222-164-150-89.ap.ngrok.io/job/instavote/job/worker-build/)
+[![Build Status]( https://b650-222-164-150-89.ap.ngrok.io/buildStatus/icon?job=instavote%2Fworker-build)](https://b650-222-164-150-89.ap.ngrok.io/job/instavote/job/worker-build/)
+[![Build Status](https://b650-222-164-150-89.ap.ngrok.io/buildStatus/icon?job=instavote%2Fworker-test&subject=UnitTest)](https://b650-222-164-150-89.ap.ngrok.io/job/instavote/job/worker-test/)
 
 Getting started
 ---------------
